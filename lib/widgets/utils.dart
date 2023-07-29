@@ -282,32 +282,34 @@ Widget func(var num, String tag, int a, String x, Color clr, int ch) {
   } else {
     n = num == null ? "N/A" : num;
   }
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-      if (a == 3)
-        Icon(Icons.favorite_border, color: c)
-      else
-        Image.asset(
-          x,
-          color: c,
-          height: 24.0,
-        ),
-      Text(
-        n.toString(),
-        style:
-            TextStyle(fontSize: 20.0, color: clr, fontWeight: FontWeight.bold),
-      ),
-      Text(
-        tag,
-        style: TextStyle(
+  return Expanded(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        if (a == 3)
+          Icon(Icons.favorite_border, color: c)
+        else
+          Image.asset(
+            x,
             color: c,
-            fontWeight: ch == 1 ? FontWeight.bold : FontWeight.normal),
-      ),
-      SizedBox(
-        height: 5.0,
-      )
-    ],
+            height: 24.0,
+          ),
+        Text(
+          n.toString(),
+          style:
+              TextStyle(fontSize: 20.0, color: clr, fontWeight: FontWeight.bold),
+        ),
+        Text(
+          tag,
+          style: TextStyle(
+              color: c,
+              fontWeight: ch == 1 ? FontWeight.bold : FontWeight.normal),
+        ),
+        SizedBox(
+          height: 5.0,
+        )
+      ],
+    ),
   );
 }
 

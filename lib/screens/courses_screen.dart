@@ -193,8 +193,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
               setState(() {
                 _selectedIndex = 2;
               });
-              _pageController.animateToPage(2,
-                  duration: Duration(milliseconds: 500), curve: Curves.ease);
+              // _pageController.animateToPage(2,
+              //     duration: Duration(milliseconds: 500), curve: Curves.ease);
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,

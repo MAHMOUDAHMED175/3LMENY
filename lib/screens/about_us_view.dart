@@ -9,7 +9,7 @@ import '../services/http_services.dart';
 class AboutUsView extends StatelessWidget {
   Widget containerOneImage(String oneImage, String oneHeading) {
     return Container(
-        height: 200,
+        height: 250,
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
@@ -65,14 +65,14 @@ class AboutUsView extends StatelessWidget {
 
   Widget conGradient(String txt, List<Color> gradientColors) {
     return Container(
-      height: 70,
+      height: 100,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Flexible(
               child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            padding: EdgeInsets.all(5.0),
             child: Text(
               "$txt",
               textAlign: TextAlign.center,

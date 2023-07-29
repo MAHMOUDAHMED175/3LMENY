@@ -142,7 +142,7 @@ class _ZoomMeetingListState extends State<ZoomMeetingList> {
                           width: MediaQuery.of(context).orientation ==
                                   Orientation.landscape
                               ? 260
-                              : MediaQuery.of(context).size.width / 1.5,
+                              : MediaQuery.of(context).size.width / 1.3,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(15.0),
@@ -159,7 +159,7 @@ class _ZoomMeetingListState extends State<ZoomMeetingList> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                height: 80,
+                                height: 70,
                                 child: showImage(index),
                               ),
                               Container(
@@ -210,12 +210,14 @@ class _ZoomMeetingListState extends State<ZoomMeetingList> {
                                         SizedBox(
                                           width: 3,
                                         ),
-                                        Text(
-                                          " ${DateFormat('dd-MM-yyyy | hh:mm aa').format(DateTime.parse("${zoomMeetingList[index].startTime}"))}",
-                                          style: TextStyle(
-                                            color: mode.easternBlueColor,
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.w600,
+                                        Expanded(
+                                          child: Text(
+                                            " ${DateFormat('dd-MM-yyyy | hh:mm aa').format(DateTime.parse("${zoomMeetingList[index].startTime}"))}",
+                                            style: TextStyle(
+                                              color: mode.easternBlueColor,
+                                              fontSize: 15.0,
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                           ),
                                         ),
                                       ],

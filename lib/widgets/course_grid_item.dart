@@ -60,7 +60,7 @@ class CourseGridItem extends StatelessWidget {
                     details.categoryId, details.type));
           },
           child: Container(
-            height: 360,
+            height: 400,
             width: MediaQuery.of(context).size.width / 3.5,
             decoration:
                 BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
@@ -99,7 +99,7 @@ class CourseGridItem extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  flex: 2,
+                  flex: 3,
                   child: Container(
                     padding:
                         EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),

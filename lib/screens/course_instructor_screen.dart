@@ -62,7 +62,7 @@ class _CourseInstructorScreenState extends State<CourseInstructorScreen> {
                       child: CircleAvatar(
                         radius: 50.0,
                         backgroundImage: details.user.userImg == null
-                            ? Image.asset(widget.imageUrl)
+                            ?AssetImage( widget.imageUrl)
                             : CachedNetworkImageProvider(
                                 APIData.userImage + details.user.userImg,
                               ),
@@ -107,7 +107,7 @@ class _CourseInstructorScreenState extends State<CourseInstructorScreen> {
               ),
             ),
             Expanded(
-              flex: 2,
+              flex: 3,
               child: Container(
                 height: MediaQuery.of(context).size.height /
                     (MediaQuery.of(context).orientation == Orientation.landscape
@@ -121,7 +121,7 @@ class _CourseInstructorScreenState extends State<CourseInstructorScreen> {
                       children: [
                         Container(
                           padding: EdgeInsets.only(top: 5.0),
-                          height: 80.0,
+                          // height: 80.0,
                           width: MediaQuery.of(context).size.width / 2 - 50,
                           decoration: BoxDecoration(),
                           child: func(
@@ -134,7 +134,7 @@ class _CourseInstructorScreenState extends State<CourseInstructorScreen> {
                         ),
                         Container(
                           padding: EdgeInsets.only(top: 5.0),
-                          height: 80.0,
+                          // height: 80.0,
                           width: MediaQuery.of(context).size.width / 2 - 50,
                           decoration: BoxDecoration(
                               border: Border(

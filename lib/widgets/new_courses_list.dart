@@ -79,7 +79,7 @@ class _NewCoursesListState extends State<NewCoursesList> {
                 highlightColor: Colors.white10,
                 borderRadius: BorderRadius.circular(10.0),
                 child: Container(
-                  padding: EdgeInsets.all(15.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Row(
                     children: [
                       Expanded(

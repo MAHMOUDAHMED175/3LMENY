@@ -65,7 +65,8 @@ class _FaqViewState extends State<FaqView> {
       future: HttpService().fetchUserFaq(),
       builder:
           (BuildContext context, AsyncSnapshot<List<FaqElement>> snapshot) {
-        return !snapshot.hasData
+            print(snapshot.data.toString());
+            return !snapshot.hasData
             ? Center(
                 child: CircularProgressIndicator(
                   valueColor:
@@ -73,20 +74,24 @@ class _FaqViewState extends State<FaqView> {
                 ),
               )
             : Scaffold(
-                backgroundColor: Color(0xFFF1F3F8),
+                // backgroundColor: Colors.purpleAccent,
                 body: Container(
-                  height: 3000,
+                  // height: 3000,
                   child: ListView.builder(
                     key: Key('builder ${idx.toString()}'),
-                    shrinkWrap: true,
+                    // shrinkWrap: true,
                     itemCount: snapshot.data.length,
                     padding:
                         EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
-                    itemBuilder: (BuildContext context, int index) =>
-                        expansionTile(index, snapshot.data),
+                    itemBuilder: (BuildContext context, int index) {
+                      expansionTile(index, snapshot.data);
+                      print(snapshot.data.toString());
+
+                    }
                   ),
                 ),
               );
+
       },
     );
   }

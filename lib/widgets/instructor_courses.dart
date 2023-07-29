@@ -94,14 +94,17 @@ class InstructCourses extends StatelessWidget {
                   progress),
               SizedBox(height: 5.0)
             } else
-              Text(
-                cd.detail,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontStyle: FontStyle.italic,
-                  color: mode.txtcolor,
-                  fontSize: 12,
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Text(
+                  cd.detail,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    color: mode.txtcolor,
+                    fontSize: 12,
+                  ),
                 ),
               ),
           ],
