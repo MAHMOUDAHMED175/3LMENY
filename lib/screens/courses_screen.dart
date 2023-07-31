@@ -134,30 +134,30 @@ class _CoursesScreenState extends State<CoursesScreen> {
         children: <Widget>[
           Expanded(
               child: InkWell(
-            onTap: () {
-              setState(() {
-                _selectedIndex = 0;
-              });
-              _pageController.animateToPage(0,
-                  duration: Duration(milliseconds: 500), curve: Curves.ease);
-            },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  translate("ALL_"),
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                    color: _selectedIndex == 0
-                        ? Color(0xFF3f4654)
-                        : Color.fromRGBO(180, 186, 198, 1.0),
-                  ),
-                )
-              ],
-            ),
-          )),
+                onTap: () {
+                  setState(() {
+                    _selectedIndex = 0;
+                  });
+                  _pageController.animateToPage(0,
+                      duration: Duration(milliseconds: 500), curve: Curves.ease);
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      translate("ALL_"),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: _selectedIndex == 0
+                            ? Color(0xFF3f4654)
+                            : Color.fromRGBO(180, 186, 198, 1.0),
+                      ),
+                    )
+                  ],
+                ),
+              )),
           VerticalDivider(thickness: 3.0, color: Color(0xFFf1f3f8)),
           Expanded(
             child: InkWell(
@@ -189,30 +189,30 @@ class _CoursesScreenState extends State<CoursesScreen> {
           VerticalDivider(thickness: 3.0, color: Color(0xFFf1f3f8)),
           Expanded(
               child: InkWell(
-            onTap: () {
-              setState(() {
-                _selectedIndex = 2;
-              });
-              // _pageController.animateToPage(2,
-              //     duration: Duration(milliseconds: 500), curve: Curves.ease);
-            },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  translate("WISHLIST_"),
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                    color: _selectedIndex == 2
-                        ? Color(0xFF3f4654)
-                        : Color.fromRGBO(180, 186, 198, 1.0),
-                  ),
-                )
-              ],
-            ),
-          )),
+                onTap: () {
+                  setState(() {
+                    _selectedIndex = 2;
+                  });
+                  // _pageController.animateToPage(2,
+                  //     duration: Duration(milliseconds: 500), curve: Curves.ease);
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      translate("WISHLIST_"),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: _selectedIndex == 2
+                            ? Color(0xFF3f4654)
+                            : Color.fromRGBO(180, 186, 198, 1.0),
+                      ),
+                    )
+                  ],
+                ),
+              )),
         ],
       ),
     );
@@ -289,7 +289,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
     List<Course> allCourses = courses.allCourses;
     List<CourseWithProgress> stud = courses.getStudyingCoursesOnly();
     List<Course> wishcourses =
-        courses.getWishList(Provider.of<WishListProvider>(context).courseIds);
+    courses.getWishList(Provider.of<WishListProvider>(context).courseIds);
 
     languageProvider = Provider.of<LanguageProvider>(context, listen: false);
 

@@ -28,22 +28,25 @@ class _CustomDrawerState extends State<CustomDrawer> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CircleAvatar(
-              radius: 38.0,
-              backgroundColor: Colors.white,
-              backgroundImage: user.profileInstance.userImg == null
-                  ? AssetImage("assets/placeholder/avatar.png")
-                  : CachedNetworkImageProvider(
-                      APIData.userImage + "${user.profileInstance.userImg}",
-                    ),
+            Expanded(
+              flex: 2,
+              child: CircleAvatar(
+                radius: 38.0,
+                backgroundColor: Colors.white,
+                backgroundImage: user.profileInstance.userImg == null
+                    ? AssetImage("assets/placeholder/avatar.png")
+                    : CachedNetworkImageProvider(
+                        APIData.userImage + "${user.profileInstance.userImg}",
+                      ),
+              ),
             ),
             SizedBox(
               height: 5.0,
             ),
-            FittedBox(
-              fit: BoxFit.fitWidth,
+            Expanded(
+              // fit: BoxFit.fitWidth,
               child: Text(
-                user.profileInstance.fname + " " + user.profileInstance.lname,
+                user.profileInstance.fname??'' + " " + user.profileInstance.lname??'',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -53,10 +56,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
             SizedBox(
               height: 5.0,
             ),
-            FittedBox(
-              fit: BoxFit.fitWidth,
+            Expanded(
+              // fit: BoxFit.fitWidth,
               child: Text(
-                user.profileInstance.email,
+                user.profileInstance.email??'',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: user.profileInstance.email.length > 35
@@ -104,7 +107,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           drawerHeader(user),
           ListTile(
             title: Text(
-              translate("Purchase_History"),
+              translate("Purchase_History")??'',
               style: TextStyle(fontSize: 16.0),
             ),
             onTap: () {
@@ -114,7 +117,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           ListTile(
             title: Text(
-              translate("Wallet_"),
+              translate("Wallet_")??'',
               style: TextStyle(fontSize: 16.0),
             ),
             onTap: () {
@@ -124,7 +127,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           ListTile(
             title: Text(
-              translate("Compare_Course"),
+              translate("Compare_Course")??'',
               style: TextStyle(fontSize: 16.0),
             ),
             onTap: () {
@@ -134,7 +137,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           ListTile(
             title: Text(
-              translate("Blogs_"),
+              translate("Blogs_")??'',
               style: TextStyle(fontSize: 16.0),
             ),
             onTap: () {
@@ -144,7 +147,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           ListTile(
             title: Text(
-              translate("Language_"),
+              translate("Language_")??'',
               style: TextStyle(fontSize: 16.0),
             ),
             onTap: () {
@@ -154,7 +157,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           ListTile(
             title: Text(
-              translate("Currency_"),
+              translate("Currency_")??'',
               style: TextStyle(fontSize: 16.0),
             ),
             onTap: () {
@@ -164,7 +167,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           ListTile(
             title: Text(
-              translate("Downloads_"),
+              translate("Downloads_")??'',
               style: TextStyle(fontSize: 16.0),
             ),
             onTap: () {
@@ -174,7 +177,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           ListTile(
             title: Text(
-              translate("Become_an_Instructor"),
+              translate("Become_an_Instructor")??'',
               style: TextStyle(fontSize: 16.0),
             ),
             onTap: () {
@@ -184,7 +187,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           ListTile(
             title: Text(
-              translate("About_Us"),
+              translate("About_Us")??'',
               style: TextStyle(fontSize: 16.0),
             ),
             onTap: () {
@@ -194,7 +197,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           ListTile(
             title: Text(
-              translate("Contact_Us"),
+              translate("Contact_Us")??'',
               style: TextStyle(fontSize: 16.0),
             ),
             onTap: () {
@@ -204,7 +207,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           ListTile(
             title: Text(
-              translate("FAQ_"),
+              translate("FAQ_")??'',
               style: TextStyle(fontSize: 16.0),
             ),
             onTap: () {
@@ -214,7 +217,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           ListTile(
             title: Text(
-              translate("Instructor_FAQ"),
+              translate("Instructor_FAQ")??'',
               style: TextStyle(fontSize: 16.0),
             ),
             onTap: () {
@@ -225,7 +228,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           if (homeDataProvider.homeModel.settings.donationEnable == '1')
             ListTile(
               title: Text(
-                translate("Donate_"),
+                translate("Donate_")??'',
                 style: TextStyle(fontSize: 16.0),
               ),
               onTap: () {
@@ -238,7 +241,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               Icons.share_sharp,
             ),
             title: Text(
-              translate("Share_this_App"),
+              translate("Share_this_App")??'',
               style: TextStyle(fontSize: 16.0),
             ),
             onTap: () async {
@@ -265,7 +268,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               Icons.update,
             ),
             title: Text(
-              translate("Check_for_update"),
+              translate("Check_for_update")??'',
               style: TextStyle(fontSize: 16.0),
             ),
             onTap: () async {
@@ -278,7 +281,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               Icons.star_half,
             ),
             title: Text(
-              translate("Rate_this_App"),
+              translate("Rate_this_App")??'',
               style: TextStyle(fontSize: 16.0),
             ),
             onTap: () async {

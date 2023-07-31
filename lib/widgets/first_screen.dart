@@ -51,14 +51,14 @@ class ScreenState extends State<Screen> with TickerProviderStateMixin {
     cardEntranceAnimationController.forward();
 
     _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500))
-          ..addListener(() {
-            setState(() {});
-          });
+    AnimationController(vsync: this, duration: Duration(milliseconds: 500))
+      ..addListener(() {
+        setState(() {});
+      });
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       WishListProvider wishListProvider =
-          Provider.of<WishListProvider>(context, listen: false);
+      Provider.of<WishListProvider>(context, listen: false);
       await wishListProvider.fetchWishList(context);
     });
   }
@@ -378,7 +378,7 @@ class ScreenState extends State<Screen> with TickerProviderStateMixin {
 
   bool checkForFilter(FilterDetailsProvider det, Course courseDetail) {
     double p = courseDetail.discountPrice == "null" ||
-            courseDetail.discountPrice == null
+        courseDetail.discountPrice == null
         ? 0
         : double.parse(courseDetail.discountPrice);
     dynamic dur = courseDetail.duration;
@@ -392,7 +392,7 @@ class ScreenState extends State<Screen> with TickerProviderStateMixin {
 
   Widget coursesLists(List<Course> filteredCourses, T.Theme mode) {
     CoursesProvider coursePro =
-        Provider.of<CoursesProvider>(context, listen: false);
+    Provider.of<CoursesProvider>(context, listen: false);
 
     return FadingEdgeScrollView.fromSingleChildScrollView(
       gradientFractionOnStart: 0.05,
@@ -407,8 +407,8 @@ class ScreenState extends State<Screen> with TickerProviderStateMixin {
               itemCount: filteredCourses.length,
               itemBuilder: (context, idx) {
                 String category =
-                    Provider.of<HomeDataProvider>(context, listen: false)
-                        .getCategoryName(filteredCourses[idx].categoryId);
+                Provider.of<HomeDataProvider>(context, listen: false)
+                    .getCategoryName(filteredCourses[idx].categoryId);
 
                 if (category == null) category = "";
                 return CustomExpansionTile(
@@ -417,21 +417,21 @@ class ScreenState extends State<Screen> with TickerProviderStateMixin {
                       coursePro.isPurchased(filteredCourses[idx].id),
                       mode.txtcolor),
                   children: filteredCourses[idx].whatlearns.length == 0 &&
-                          filteredCourses[idx].include.length == 0
+                      filteredCourses[idx].include.length == 0
                       ? []
                       : <Widget>[
-                          SingleChildScrollView(
-                            controller: ScrollController(),
-                            padding: EdgeInsets.only(top: 15.0, bottom: 10.0),
-                            child: Column(
-                              children: buildCards(
-                                  filteredCourses[idx].whatlearns,
-                                  filteredCourses[idx].include,
-                                  mode.txtcolor,
-                                  category),
-                            ),
-                          )
-                        ],
+                    SingleChildScrollView(
+                      controller: ScrollController(),
+                      padding: EdgeInsets.only(top: 15.0, bottom: 10.0),
+                      child: Column(
+                        children: buildCards(
+                            filteredCourses[idx].whatlearns,
+                            filteredCourses[idx].include,
+                            mode.txtcolor,
+                            category),
+                      ),
+                    )
+                  ],
                   onExpansionChanged: ((newState) {
                     if (newState) {
                       openedidxs.add(idx);
@@ -511,8 +511,8 @@ class ScreenState extends State<Screen> with TickerProviderStateMixin {
       body: widget.courses.length == 0
           ? (visible ? whenempty(widget.cType) : shimmerScreen())
           : filteredCourses.length == 0
-              ? whenFilterNotFound()
-              : coursesLists(filteredCourses, mode),
+          ? whenFilterNotFound()
+          : coursesLists(filteredCourses, mode),
     );
   }
 }

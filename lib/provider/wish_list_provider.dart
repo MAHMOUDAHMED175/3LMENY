@@ -68,7 +68,7 @@ class WishListProvider with ChangeNotifier {
       }
     } else if (res.statusCode == 401) {
       await storage.deleteAll();
-      // Navigator.of(context).pushNamed('/SignIn');
+      Navigator.of(context).pushNamed('/SignIn');
     } else {
       throw "Can't get wishlist";
     }
