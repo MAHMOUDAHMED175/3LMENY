@@ -58,11 +58,15 @@ class CompareCourseProvider with ChangeNotifier {
 
   int isCompareCourse(int courseId) {
     int compareId = 0;
-    compareCourseModel.compare.forEach((compare) {
-      if (compare.courseId == courseId.toString()) {
-        compareId = compare.id;
-      }
-    });
+    if (compareCourseModel != null) {
+      compareCourseModel?.compare.forEach((compare) {
+        if (compare.courseId == courseId.toString()) {
+          compareId = compare.id;
+        }
+      });
+    }
     return compareId;
   }
+
+
 }

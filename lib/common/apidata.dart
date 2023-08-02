@@ -5,7 +5,7 @@ class APIData {
   // static const String domainLink = "https://lms.oceantecsa.com/public/";
   static const String domainLink = "https://3lmney.online/";
   static const String domainApiLink = domainLink + "api/";
-  // API Links
+  // API Links https://3lmney.online/api/payment/apikeys?secret=
   static const String getSecretKey = domainApiLink + "apikeys";
   static const String login = domainApiLink + "login";
   static const String fbLoginAPI = domainApiLink + "fblogin";
@@ -162,7 +162,6 @@ class APIData {
   static const String appName = "3lmney";
   // static const String secretKey = "c513d158-ea4b-4735-b5a3-5bd04c0475cd";
      static const String secretKey = "34ab78c9-3d5a-45fa-b46e-daed2e16a52f";
-
   // Replace with your android app id
   static const String androidAppId = 'ENTER_ANDROID_APP_PACKAGE_NAME_HERE';
 

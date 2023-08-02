@@ -15,7 +15,6 @@ class WalletScreen extends StatefulWidget {
   @override
   State<WalletScreen> createState() => _WalletScreenState();
 }
-
 class _WalletScreenState extends State<WalletScreen> {
   @override
   void initState() {
@@ -27,16 +26,17 @@ class _WalletScreenState extends State<WalletScreen> {
   }
 
   String currency;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(context, translate("Wallet_")),
       body: Consumer<WalletDetailsProvider>(
         builder: (_, provider, __) {
-          String currentBalance = provider.walletModel.wallet != null
+          String currentBalance = provider.walletModel?.wallet != null
               ? provider.walletModel.wallet.contains(".")
-                  ? "${currencySymbol(currency)} ${provider.walletModel.wallet}"
-                  : "${currencySymbol(currency)} ${provider.walletModel.wallet}.00"
+              ? "${currencySymbol(currency)} ${provider.walletModel.wallet}"
+              : "${currencySymbol(currency)} ${provider.walletModel.wallet}.00"
               : "${currencySymbol(currency)} 0.00";
           return SingleChildScrollView(
             child: Container(
@@ -46,7 +46,6 @@ class _WalletScreenState extends State<WalletScreen> {
                   Card(
                     elevation: 3.0,
                     child: Container(
-                      height: 160,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4.0),
                         border: Border.all(
@@ -54,94 +53,100 @@ class _WalletScreenState extends State<WalletScreen> {
                           width: 1,
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Container(
-                              padding: EdgeInsets.all(15.0),
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  right: BorderSide(
-                                    color: Colors.black45,
-                                    width: 1,
-                                  ),
-                                ),
-                              ),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    translate("Wallet_"),
-                                    style: TextStyle(
-                                      fontSize: 30.0,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  CircleAvatar(
-                                    radius: 38.0,
-                                    backgroundColor: Colors.redAccent,
-                                    child: Icon(
-                                      Icons.account_balance_wallet_outlined,
-                                      size: 55.0,
-                                      color: Colors.white,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Container(
-                              padding: EdgeInsets.all(15.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    translate("Current_Balance"),
-                                    style: TextStyle(
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  Text(
-                                    currentBalance,
-                                    style: TextStyle(
-                                      fontSize: 30.0,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  SizedBox(height: 10),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.green,
-                                    ),
-                                    onPressed: () {
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              TopUpWalletScreen(currentBalance,
-                                                  "${currencySymbol(currency)}"),
-                                        ),
-                                      );
-                                    },
-                                    child: Text(
-                                      translate("Top_up_Wallet"),
-                                      style: TextStyle(
-                                        fontSize: 16.0,
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          bool isWideScreen = constraints.maxWidth > 600;
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                flex: isWideScreen ? 1 : 0,
+                                child: Container(
+                                  padding: EdgeInsets.all(15.0),
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      right: BorderSide(
+                                        color: Colors.black45,
+                                        width: 1,
                                       ),
                                     ),
                                   ),
-                                ],
+                                  child: Column(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        translate("Wallet_"),
+                                        style: TextStyle(
+                                          fontSize: 30.0,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                      CircleAvatar(
+                                        radius: 38.0,
+                                        backgroundColor: Colors.redAccent,
+                                        child: Icon(
+                                          Icons.account_balance_wallet_outlined,
+                                          size: 55.0,
+                                          color: Colors.white,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                        ],
+                              Expanded(
+                                flex: isWideScreen ? 2 : 3,
+                                child: Container(
+                                  padding: EdgeInsets.all(15.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        translate("Current_Balance"),
+                                        style: TextStyle(
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      Text(
+                                        currentBalance,
+                                        style: TextStyle(
+                                          fontSize: 30.0,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                      SizedBox(height: 10),
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.green,
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  TopUpWalletScreen(
+                                                      currentBalance,
+                                                      "${currencySymbol(currency)}"),
+                                            ),
+                                          );
+                                        },
+                                        child: Text(
+                                          translate("Top_up_Wallet"),
+                                          style: TextStyle(
+                                            fontSize: 16.0,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
                       ),
                     ),
                   ),
@@ -150,7 +155,7 @@ class _WalletScreenState extends State<WalletScreen> {
                   Card(
                     elevation: 5.0,
                     child: QrImage(
-                      data: "${provider.walletModel.path}",
+                      data: "${provider.walletModel?.path}",
                       version: QrVersions.auto,
                       size: 300,
                     ),
@@ -158,7 +163,7 @@ class _WalletScreenState extends State<WalletScreen> {
                   SizedBox(height: 25.0),
                   InkWell(
                     onTap: () {
-                      Share.share("${provider.walletModel.path}",
+                      Share.share("${provider.walletModel?.path}",
                           subject: translate("Referral_Link"));
                     },
                     splashColor: Colors.black12,
