@@ -23,7 +23,7 @@ class CurrencyScreen extends StatefulWidget {
 
 class _CurrencyScreenState extends State<CurrencyScreen> {
   String dropdownValue = 'USD';
-  List<String> currencies = ['USD', 'INR'];
+  List<String> currencies = ['USD', 'INR', 'EGP'];
   bool isLoading = false;
 
   @override

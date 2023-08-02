@@ -417,7 +417,153 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
     return ans;
   }
 
+  // Widget unPurchasedCourseDetails(FullCourse details, String currency) {
+  //   return Container(
+  //     padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
+  //     margin: EdgeInsets.all(12.0),
+  //     decoration: BoxDecoration(
+  //       color: Colors.white,
+  //       borderRadius: BorderRadius.circular(10.0),
+  //     ),
+  //     child:
+  //         Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+  //       Padding(
+  //         padding: const EdgeInsets.only(left: 18.0, right: 18.0),
+  //         child: Text(
+  //           details.course.title,
+  //           textAlign: TextAlign.center,
+  //           style: TextStyle(
+  //               fontWeight: FontWeight.bold,
+  //               fontSize: 22.0,
+  //               color: Color(0xff404455)),
+  //         ),
+  //       ),
+  //
+  //       // ignore: unrelated_type_equality_checks
+  //       if (details.course.type.toString() == "1")
+  //         Row(
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           children: [
+  //             if (details.course.discountPrice != null)
+  //               Text(
+  //                   "${currencySymbol(currency)} ${(num.tryParse(details.course.discountPrice.toString()) * selectedCurrencyRate)}",
+  //                   style: TextStyle(
+  //                       fontWeight: FontWeight.bold,
+  //                       fontSize: 22.0,
+  //                       color: Color(0xff404455))),
+  //             SizedBox(
+  //               width: 10.0,
+  //             ),
+  //             Text(
+  //               "${currencySymbol(currency)} ${(num.tryParse(details.course.price.toString()) * selectedCurrencyRate)}",
+  //               style: TextStyle(
+  //                 color: details.course.discountPrice != null
+  //                     ? Color(0xff943f4654)
+  //                     : Color(0xff404455),
+  //                 fontWeight: details.course.discountPrice != null
+  //                     ? FontWeight.normal
+  //                     : FontWeight.bold,
+  //                 fontSize: details.course.discountPrice != null ? 16.0 : 22.0,
+  //                 decoration: details.course.discountPrice != null
+  //                     ? TextDecoration.lineThrough
+  //                     : null,
+  //               ),
+  //             )
+  //           ],
+  //         )
+  //       else
+  //         Text(translate("Free_"),
+  //             style: TextStyle(
+  //                 fontWeight: FontWeight.w500,
+  //                 fontSize: 22.0,
+  //                 color: Colors.red)),
+  //       Container(
+  //         padding: EdgeInsets.symmetric(horizontal: 20),
+  //         child: Text(
+  //           details.course.shortDetail,
+  //           maxLines: 3,
+  //           overflow: TextOverflow.ellipsis,
+  //           textAlign: TextAlign.center,
+  //         ),
+  //       ),
+  //       SizedBox(
+  //         height: 4.0,
+  //       ),
+  //       Container(
+  //         height: 50,
+  //         child: Row(
+  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //           children: [
+  //             Expanded(
+  //                 child: funcol(
+  //                     translate("Course_By"), details.course.user.fname)),
+  //             Expanded(
+  //                 child: funcol(translate("Last_Updated"),
+  //                     DateFormat.yMMMd().format(details.course.createdAt))),
+  //             Expanded(
+  //                 child: funcol(
+  //                     translate("Language_"),
+  //                     details.course.language == null
+  //                         ? "N/A"
+  //                         : details.course.language.name)),
+  //           ],
+  //         ),
+  //       ),
+  //       Container(
+  //         // height: 80,
+  //         child: Row(
+  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //           children: [
+  //             Expanded(
+  //                 child: func(
+  //                     details.studentEnrolled,
+  //                     translate("Students_"),
+  //                     1,
+  //                     "assets/icons/studentsicon.png",
+  //                     Color(0xff3f4654),
+  //                     0)),
+  //             Expanded(
+  //                 child: func(
+  //                     details.review == null ? "0" : getRating(details.review),
+  //                     translate("Rating_"),
+  //                     2,
+  //                     "assets/icons/star_icon.png",
+  //                     Color(0xff3f4654),
+  //                     0)),
+  //             Expanded(
+  //                 child: func(
+  //                     details.course.courseclass.length.toDouble(),
+  //                     translate("Lecture_"),
+  //                     4,
+  //                     "assets/icons/lecturesicon.png",
+  //                     Color(0xff3f4654),
+  //                     0)),
+  //           ],
+  //         ),
+  //       )
+  //     ]),
+  //   );
+  // }
   Widget unPurchasedCourseDetails(FullCourse details, String currency) {
+    // Get the current device's screen width
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    // Determine the text size based on the screen width
+    double titleTextSize = 22.0;
+    double priceTextSize = 22.0;
+    double detailTextSize = 16.0;
+    if (screenWidth < 600) {
+      // For smaller screens (e.g., smartphones)
+      titleTextSize = 18.0;
+      priceTextSize = 16.0;
+      detailTextSize = 14.0;
+    } else if (screenWidth >= 600 && screenWidth < 1200) {
+      // For medium-sized screens (e.g., tablets)
+      titleTextSize = 20.0;
+      priceTextSize = 18.0;
+      detailTextSize = 16.0;
+    }
+
     return Container(
       padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
       margin: EdgeInsets.all(12.0),
@@ -425,35 +571,33 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
         color: Colors.white,
         borderRadius: BorderRadius.circular(10.0),
       ),
-      child:
-          Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Padding(
           padding: const EdgeInsets.only(left: 18.0, right: 18.0),
           child: Text(
             details.course.title,
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 22.0,
-                color: Color(0xff404455)),
+              fontWeight: FontWeight.bold,
+              fontSize: titleTextSize,
+              color: Color(0xff404455),
+            ),
           ),
         ),
-
-        // ignore: unrelated_type_equality_checks
         if (details.course.type.toString() == "1")
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (details.course.discountPrice != null)
                 Text(
-                    "${currencySymbol(currency)} ${(num.tryParse(details.course.discountPrice.toString()) * selectedCurrencyRate)}",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22.0,
-                        color: Color(0xff404455))),
-              SizedBox(
-                width: 10.0,
-              ),
+                  "${currencySymbol(currency)} ${(num.tryParse(details.course.discountPrice.toString()) * selectedCurrencyRate)}",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: priceTextSize,
+                    color: Color(0xff404455),
+                  ),
+                ),
+              SizedBox(width: 10.0),
               Text(
                 "${currencySymbol(currency)} ${(num.tryParse(details.course.price.toString()) * selectedCurrencyRate)}",
                 style: TextStyle(
@@ -463,20 +607,23 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
                   fontWeight: details.course.discountPrice != null
                       ? FontWeight.normal
                       : FontWeight.bold,
-                  fontSize: details.course.discountPrice != null ? 16.0 : 22.0,
+                  fontSize: details.course.discountPrice != null ? priceTextSize - 6 : priceTextSize,
                   decoration: details.course.discountPrice != null
                       ? TextDecoration.lineThrough
                       : null,
                 ),
-              )
+              ),
             ],
           )
         else
-          Text(translate("Free_"),
-              style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 22.0,
-                  color: Colors.red)),
+          Text(
+            translate("Free_"),
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: priceTextSize,
+              color: Colors.red,
+            ),
+          ),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Text(
@@ -484,60 +631,68 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
+            style: TextStyle(fontSize: detailTextSize),
           ),
         ),
-        SizedBox(
-          height: 4.0,
-        ),
+        SizedBox(height: 4.0),
         Container(
           height: 50,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Expanded(
-                  child: funcol(
-                      translate("Course_By"), details.course.user.fname)),
+                child: funcol(translate("Course_By"), details.course.user.fname),
+              ),
               Expanded(
-                  child: funcol(translate("Last_Updated"),
-                      DateFormat.yMMMd().format(details.course.createdAt))),
+                child: funcol(
+                  translate("Last_Updated"),
+                  DateFormat.yMMMd().format(details.course.createdAt),
+                ),
+              ),
               Expanded(
-                  child: funcol(
-                      translate("Language_"),
-                      details.course.language == null
-                          ? "N/A"
-                          : details.course.language.name)),
+                child: funcol(
+                  translate("Language_"),
+                  details.course.language == null ? "N/A" : details.course.language.name,
+                ),
+              ),
             ],
           ),
         ),
         Container(
           height: 80,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                  child: func(
-                      details.studentEnrolled,
-                      translate("Students_"),
-                      1,
-                      "assets/icons/studentsicon.png",
-                      Color(0xff3f4654),
-                      0)),
+                child: func(
+                  details.studentEnrolled,
+                  translate("Students_"),
+                  1,
+                  "assets/icons/studentsicon.png",
+                  Color(0xff3f4654),
+                  0,
+                ),
+              ),
               Expanded(
-                  child: func(
-                      details.review == null ? "0" : getRating(details.review),
-                      translate("Rating_"),
-                      2,
-                      "assets/icons/star_icon.png",
-                      Color(0xff3f4654),
-                      0)),
+                child: func(
+                  details.review == null ? "0" : getRating(details.review),
+                  translate("Rating_"),
+                  2,
+                  "assets/icons/star_icon.png",
+                  Color(0xff3f4654),
+                  0,
+                ),
+              ),
               Expanded(
-                  child: func(
-                      details.course.courseclass.length.toDouble(),
-                      translate("Lecture_"),
-                      4,
-                      "assets/icons/lecturesicon.png",
-                      Color(0xff3f4654),
-                      0)),
+                child: func(
+                  details.course.courseclass.length.toDouble(),
+                  translate("Lecture_"),
+                  4,
+                  "assets/icons/lecturesicon.png",
+                  Color(0xff3f4654),
+                  0,
+                ),
+              ),
             ],
           ),
         )
